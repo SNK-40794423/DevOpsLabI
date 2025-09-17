@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/classes/com /tmp/com
-WORKDIR /tmp
-ENTRYPOINT ["java", "com.testproject.App"]
+COPY ./target/classes /app
+WORKDIR /app
+ENTRYPOINT ["java", "imc.com.Ixacise"]
