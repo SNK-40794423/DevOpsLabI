@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/classes /app
-WORKDIR /app
-ENTRYPOINT ["java", "imc.com.Ixacise"]
+COPY ./target/DevOpsLabI-1.0-SNAPSHOT-jar-with-dependencies.jar /tmp
+WORKDIR /tmp
+ENTRYPOINT ["java", "-jar", "DevOpsLabI-1.0-SNAPSHOT-jar-with-dependencies.jar"]

@@ -1,4 +1,4 @@
-name: Develop Build Status
+name: Develop Build
 on: push
 
 jobs:
