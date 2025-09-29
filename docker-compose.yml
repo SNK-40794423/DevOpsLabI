@@ -4,6 +4,7 @@ services:
   app:
     build: .
 
+
   # db is is db folder
   db:
     build: db/.
@@ -13,4 +14,4 @@ services:
       MYSQL_DATABASE: employees
       MYSQL_ROOT_HOST: '%'
     ports:
-      - "3306:3306"
+    - "3306:3306"

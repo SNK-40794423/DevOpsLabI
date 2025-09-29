@@ -33,8 +33,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                String url = "jdbc:mysql://127.0.0.1:3306/employees?useSSL=false&allowPublicKeyRetrieval=true";
-                con = DriverManager.getConnection(url, "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -121,8 +120,6 @@ public class App
     {
         // Create new Application
         App a = new App();
-
-
         // Connect to database
         a.connect();
         // Get Employee
