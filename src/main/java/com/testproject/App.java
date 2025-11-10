@@ -1,9 +1,9 @@
 package com.testproject;
+
 import java.sql.*;
 import java.util.ArrayList;
 
-public class App
-{
+public class App {
     /**
      * Connection to MySQL database.
      */
@@ -147,11 +147,19 @@ public class App
 
     public void printSalaries(ArrayList<Employee> employees)
     {
+        // Check employees is not null
+        if (employees == null)
+        {
+            System.out.println("No employees");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
         // Loop over all employees in the list
         for (Employee emp : employees)
         {
+            if (emp == null)
+                continue;
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
                             emp.emp_no, emp.first_name, emp.last_name, emp.salary);
@@ -234,7 +242,7 @@ public class App
         App a = new App();
 
         if(args.length < 1){
-            a.connect("localhost:3306", 3000);
+            a.connect("localhost:33060", 3000);
         } else {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
@@ -250,4 +258,5 @@ public class App
         // Disconnect from database
         a.disconnect();
     }
+
 }
