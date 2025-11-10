@@ -36,8 +36,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
       - name: Integration Tests
         run: |
+          for i in {1..30}; do
+          docker exec employees mysql -uroot -pexample -e "SELECT 1" && break
+          echo "Waiting for MySQL..."
+          sleep 2
+          done
           docker build -t database ./db 
           docker run --name employees -dp 33060:3306 database
           mvn -Dtest=com.testproject.AppIntegrationTest test
