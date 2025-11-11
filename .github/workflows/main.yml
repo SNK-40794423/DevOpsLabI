@@ -5,7 +5,6 @@ on:
       - develop
       - lab08
 
-
 jobs:
   UnitTests:
     name: Unit Tests
