@@ -39,12 +39,17 @@ jobs:
 
       - name: Integration Tests and CodeCov
         run: |
-            docker build -t database ./db 
-            docker run --name employees -dp 33060:3306 database
-            mvn -Dtest=com.testproject.AppIntegrationTest test          
-            docker stop employees
-            docker rm employees
-            docker image rm database  
+           docker build -t database ./db
+           docker run --name employees -dp 33060:3306 database
+           echo "Waiting for MySQL to start..."
+           for i in {1..30}; do
+             docker exec employees mysql -uroot -pexample -e "SELECT 1" && break
+             sleep 2
+           done
+           mvn -Dtest=com.testproject.AppIntegrationTest test
+           docker stop employees
+           docker rm employees
+           docker image rm database
 
       - name: CodeCov
         uses: codecov/codecov-action@v2
