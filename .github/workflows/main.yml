@@ -57,6 +57,15 @@ jobs:
           docker rm employees
           docker image rm database
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+
+      - name: Install dependencies
+        run: pip install pytest pytest-cov
+
+      - name: Run tests
+        run: pytest --cov --cov-branch --cov-report=xml
+
       - name: CodeCov
         uses: codecov/codecov-action@v2
         with:
