@@ -1,4 +1,4 @@
-![workflow](https://github.com/SNK-40794423/DevOpsLabI/actions/workflows/main.yml/badge.svg)
+[![codecov](https://codecov.io/github/snk-40794423/devopslabi/graph/badge.svg?token=ZY1NNW9KPG)](https://codecov.io/github/snk-40794423/devopslabi)
 
 ![workflow](https://github.com/SNK-40794423/DevOpsLabI/actions/workflows/main.yml/badge.svg?branch=develop)
 
