@@ -38,7 +38,7 @@ public class App {
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
@@ -159,7 +159,7 @@ public class App {
             return;
         }
         // Print header
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        System.out.printf("%-10s %-15s %-20s %-8s%n", "Emp No", "First Name", "Last Name", "Salary");
         // Loop over all employees in the list
         for (Employee emp : employees)
         {
@@ -293,7 +293,7 @@ public class App {
 
 
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         // Create new Application
         App a = new App();
 
@@ -310,8 +310,8 @@ public class App {
         Department departments = a.getDepartment("Sales");
         System.out.println(departments);
         ArrayList<Employee> salaries = a.getSalariesByDepartment(departments);
-        a.outputEmployees(salaries, "DepartmentsSalaries.md");
-        //a.printSalaries(salaries);
+        //a.outputEmployees(salaries, "DepartmentsSalaries.md");
+        a.printSalaries(salaries);
 
         // Disconnect from database
         a.disconnect();
