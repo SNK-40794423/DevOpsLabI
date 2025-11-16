@@ -1,5 +1,10 @@
 package com.testproject;
 
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -60,7 +65,7 @@ public class App {
         }
     }
 
-    public Employee getEmployee(int ID)
+    public Employee getEmployees(int ID)
     {
         try
         {
@@ -254,11 +259,45 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Outputs to Markdown
+     *
+     * @param employees
+     */
+    public void outputEmployees(ArrayList<Employee> employees, String filename) {
+        if (employees == null || employees.isEmpty()) {
+            System.out.println("No employees to output.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("| Emp No | First Name | Last Name | Salary |\r\n");
+        sb.append("| --- | --- | --- | --- |\r\n");
+
+        for (Employee emp : employees) {
+            if (emp == null) continue;
+            sb.append("| " + emp.emp_no + " | " +
+                    emp.first_name + " | " + emp.last_name + " | " +
+                    emp.salary + " |\r\n");
+        }
+
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void main(String[] args) {
         // Create new Application
         App a = new App();
 
-        if(args.length < 1){
+        if (args.length < 1) {
             a.connect("localhost:33060", 3000);
         } else {
             a.connect(args[0], Integer.parseInt(args[1]));
@@ -267,10 +306,12 @@ public class App {
       // Extract employee salary information
       // ArrayList<Employee> employees = a.getAllSalaries();
 
+
         Department departments = a.getDepartment("Sales");
         System.out.println(departments);
         ArrayList<Employee> salaries = a.getSalariesByDepartment(departments);
-        a.printSalaries(salaries);
+        a.outputEmployees(salaries, "DepartmentsSalaries.md");
+        //a.printSalaries(salaries);
 
         // Disconnect from database
         a.disconnect();

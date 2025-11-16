@@ -21,7 +21,7 @@ public class AppIntegrationTest {
     @Test
     void testGetEmployee()
     {
-        Employee emp = app.getEmployee(255530);
+        Employee emp = app.getEmployees(255530);
         assertEquals(emp.emp_no, 255530);
         assertEquals(emp.first_name, "Ronghao");
         assertEquals(emp.last_name, "Garigliano");
@@ -42,7 +42,7 @@ public class AppIntegrationTest {
         emp.first_name = "Kevin";
         emp.last_name = "Chalmers";
         app.addEmployee(emp);
-        emp = app.getEmployee(500000);
+        emp = app.getEmployees(500000);
         assertEquals(emp.emp_no, 500000);
         assertEquals(emp.first_name, "Kevin");
         assertEquals(emp.last_name, "Chalmers");
